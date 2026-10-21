@@ -413,10 +413,10 @@ function admin() {
   const isAdmin=currentUser().role==='SUPER ADMIN';
   const people=state.users;
   const removed=state.removed||[];
-  return shell(`<div class="page">${pageHead('Organisation','Admin','People, Departments and workspace access')}
+  return shell(`<div class="page">${pageHead('Organisation','Admin','People, roles and Departments')}
     ${isAdmin?'<div class="toolbar"><button class="btn acid" data-action="beta-invite">+ Invite colleague</button><button class="btn ghost" data-action="beta-export">Download data backup</button></div>':''}
     <div class="section-label">Departments</div><div class="cloud">${(state.departments||[]).map(d=>`<span class="chip">${esc(d)} · ${people.filter(u=>u.department===d).length}</span>`).join('')}</div>
-    <div class="section-label">People · ${people.length}</div><div class="admin-people">${people.map(u=>`<article class="admin-person">${avatar(u,'sm')}<div><b>${esc(u.name)}</b><small>${esc(u.email)}</small><small>${esc(u.department)} · ${esc(u.role)}</small></div><div class="admin-person-actions"><button class="btn ghost" data-person="${u.id}">Profile</button>${isAdmin?`<button class="btn ghost" data-beta-edit-person="${u.id}">Edit Department</button>${u.id!==state.currentUserId?`<button class="btn danger" data-beta-remove="people" data-id="${u.id}">Remove person</button>`:''}`:''}</div></article>`).join('')}</div>
+    <div class="section-label">People · ${people.length}</div><div class="admin-people">${people.map(u=>`<article class="admin-person">${avatar(u,'sm')}<div><b>${esc(u.name)}</b><small>${esc(u.email)}</small><small>${esc(u.department)} · ${esc(u.role)}</small></div><div class="admin-person-actions"><button class="btn ghost" data-person="${u.id}">Profile</button>${isAdmin?`<button class="btn ghost" data-beta-edit-person="${u.id}">Edit access</button>${u.id!==state.currentUserId?`<button class="btn danger" data-beta-remove="people" data-id="${u.id}">Remove person</button>`:''}`:''}</div></article>`).join('')}</div>
     ${isAdmin?`<div class="section-label">Removed items · ${removed.length}</div><p>Restore an item to return it to the workspace. Removing a person disables their access; their work history is retained.</p><div class="removed-list">${removed.map(r=>`<article class="removed-item"><div><b>${esc(r.name)}</b><small>${esc(r.kind==='people'?'Person':r.kind==='tasks'?'Task':r.kind==='projects'?'Project':'Brand')} · Removed ${fmtDateTime(r.deleted_at)}</small></div><button class="btn ghost" data-beta-restore="${esc(r.kind)}" data-id="${r.id}">Restore</button></article>`).join('')||'<div class="empty">No removed items.</div>'}</div>`:''}
   </div>`,'admin');
 }
@@ -431,7 +431,7 @@ function openBetaRemoval(kind,id) {
 
 function openBetaPerson(id) {
   const u=user(id);if(!u)return;
-  modal('Edit Department · '+u.name,`<form id="beta-person-form" data-id="${id}" class="form-grid"><div class="field"><label class="label">Department</label><select name="department">${options(state.departments,u.department)}</select></div><div class="field full"><label class="label">Reports to</label><select name="managerId">${options([['','No manager'],...state.users.filter(p=>p.id!==id).map(p=>[p.id,p.name])],u.manager_id||'')}</select></div><p class="removal-error" role="alert"></p></form>`,`<button class="btn ghost" data-action="close-modal">Cancel</button><button class="btn primary" form="beta-person-form">Save changes</button>`);
+  modal('Edit access · '+u.name,`<form id="beta-person-form" data-id="${id}" class="form-grid"><div class="field full"><label class="label">Role</label><select name="role" ${u.id===state.currentUserId?'disabled':''}>${options(state.permissionRoles||[],u.role)}</select>${u.id===state.currentUserId?'<small>Your own administrator role stays unchanged.</small>':'<small>Changes apply on the colleague’s next request. Their invitation link stays valid.</small>'}</div><div class="field"><label class="label">Department</label><select name="department">${options(state.departments,u.department)}</select></div><div class="field full"><label class="label">Reports to</label><select name="managerId">${options([['','No manager'],...state.users.filter(p=>p.id!==id).map(p=>[p.id,p.name])],u.manager_id||'')}</select></div><p class="removal-error" role="alert"></p></form>`,`<button class="btn ghost" data-action="close-modal">Cancel</button><button class="btn primary" form="beta-person-form">Save changes</button>`);
 }
 
 document.addEventListener('click',async e=>{
@@ -458,7 +458,7 @@ document.addEventListener('submit',async e=>{
     const removed=f.id==='beta-remove-form',kind=f.dataset.kind;
     closeModal();await refresh(false);
     if(removed&&kind==='tasks')go('my-work');else if(removed&&kind==='projects')go('projects');else if(removed&&kind==='brands')go('brands');else render();
-    toast(f.id==='beta-person-form'?'Department updated':removed?'Item removed · Restore from Admin':'Item restored');
+    toast(f.id==='beta-person-form'?'Access updated':removed?'Item removed · Restore from Admin':'Item restored');
   }catch(error){const target=f.querySelector('[role="alert"]');if(target)target.textContent=error.message;else toast(error.message);}
   finally{if(button?.isConnected)button.disabled=false;}
 },true);

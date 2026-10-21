@@ -104,3 +104,13 @@ html,body{background:#f2f4f5;color:#172d3c}body::before{display:none}
 @media(max-width:700px){.admin-person,.removed-item{flex-wrap:wrap}.admin-person-actions{flex-basis:100%!important}.password-toggle{min-width:64px}}
 
 .page .confidential{background:#f6e0e7;color:#741b3a;border-color:#bc8d9f}.global-header .primary-nav a>b{background:#a6233c;color:#fff}
+
+/* Activity also appears outside .page, inside the Updates dialog. */
+.modal .activity-list{color:#172d3c;line-height:1.55}
+.modal .activity-item{border-color:#d5dde1;padding:13px 0;align-items:start}
+.modal .activity-text{color:#172d3c;font-size:.875rem;min-width:0;overflow-wrap:anywhere}
+.modal .activity-time{color:#4b606e;font-size:.75rem;line-height:1.5}
+.modal .person-link{color:#096478;font-size:.875rem;font-weight:700}
+.modal .person-link:hover{color:#073e51}
+.modal .activity-text .avatar{color:#102a3e}
+.modal .activity-text .person-link span:last-child{white-space:normal;overflow-wrap:anywhere}
