@@ -114,3 +114,6 @@ html,body{background:#f2f4f5;color:#172d3c}body::before{display:none}
 .modal .person-link:hover{color:#073e51}
 .modal .activity-text .avatar{color:#102a3e}
 .modal .activity-text .person-link span:last-child{white-space:normal;overflow-wrap:anywhere}
+
+.brand-people{margin-bottom:18px}.member-summary{display:grid;gap:12px}.member-summary small{display:block;color:#4b606e;margin-left:36px;font-size:.75rem}
+.member-picker{display:grid;gap:0;max-height:340px;overflow:auto;border:1px solid #b6c3ca;padding:0;margin:12px 0}.member-picker legend{font-size:.75rem;color:#4b606e;padding:0 8px}.member-choice{display:flex;gap:10px;align-items:center;padding:12px;border-bottom:1px solid #d5dde1;cursor:pointer;background:#fff;color:#172d3c}.member-choice:last-child{border-bottom:0}.member-choice[hidden]{display:none}.member-choice input{width:18px;height:18px;flex:0 0 auto;padding:0;accent-color:#096c80}.member-choice>span:last-child{min-width:0;overflow-wrap:anywhere}.member-choice b,.member-choice small{display:block}.member-choice small{font-size:.75rem;color:#4b606e}.membership-inherited,.membership-note{font-size:.8rem;line-height:1.5}.membership-inherited{padding:10px;background:#edf5f5;border:1px solid #b6c3ca}
