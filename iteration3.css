@@ -57,7 +57,7 @@ html{background:#06111f}body{background:radial-gradient(circle at 78% 4%,rgba(10
 .page .input,.page select,.page textarea{background:#fffdf8;color:#182b38;border-color:#7d929a}
 .page .chip{background:#f0eee7;color:#183c4b;border-color:#9cabad}.page .chip:hover{background:#d2edf0}
 .page .btn.ghost{background:transparent;color:#174b60;border-color:#66828f}.page .btn.ghost:hover{background:#dce8e8;color:#102a3c}
-.page .deadline.today{color:#874c00}.page .deadline.overdue{color:#ad2540}
+.page .deadline.today{color:#674200;background:#f4dda1}.page .deadline.overdue{color:#ad2540}
 .page .board-col{background:#dedfd9;border-color:#a9b8ba}.page .board-card{background:#faf8f2;color:#182b38;border-color:#9aafb5}.page .kanban-empty{color:#53646c}
 .page .stage-tag{color:#274a5b;background:#d9e5e6;border-color:#9aafb5}
 .page .dark-panel,.page .hero-board,.page .project-banner,.page .task-header,.page .profile-hero,.page .timeline{--warm:#f3efe7;--ink-primary:#f3efe7;--ink-secondary:#b5c6ce;color:#f3efe7}
@@ -67,6 +67,7 @@ html{background:#06111f}body{background:radial-gradient(circle at 78% 4%,rgba(10
 .page .project-banner .eyebrow,.page .task-header .eyebrow,.page .timeline .eyebrow,.page .hero-board .eyebrow,.page .profile-hero .eyebrow{color:#c2d6dc}
 .page .project-banner .btn.ghost,.page .task-header .btn.ghost,.page .profile-hero .btn.ghost{background:transparent;color:#fff6e9;border-color:#abc4cc}
 .page .project-banner .deadline,.page .task-header .deadline{color:#ffdf95}
+.page .task-header .deadline.today{background:transparent;color:#ffdf95}.page .task-header .deadline.overdue{color:#ffb3bc}
 .page .table-head{background:#17354a;color:#f5f1e9}.page .table-head:hover{background:#17354a}
 .page .stat{background:#f7f5f0;color:#182b38;border-color:#a7b9bd}.page .stat-label{color:#415865}
 .page .daily-progress{--ink-primary:#f3efe7;--ink-secondary:#bfd0d6;color:#f3efe7}.page .daily-progress h2{color:#f3efe7}.page .daily-progress small{color:#bfd0d6}
