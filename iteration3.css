@@ -43,3 +43,5 @@ html{background:#06111f}body{background:radial-gradient(circle at 78% 4%,rgba(10
 @media(max-width:820px){.timeline-hours{min-width:720px}.timeline{overflow-x:auto}.profile-grid{grid-template-columns:1fr}}
 
 .task-milestone{grid-column:1/-1;padding:10px 13px;background:var(--status-approved-bg);color:var(--status-approved-fg);font-weight:800;border:1px solid #153f35;margin-top:10px;flex-basis:100%}.task-header{flex-wrap:wrap}
+
+.reference-chips>a[href=""]{display:none}
